@@ -98,6 +98,22 @@ class RegistrationsController < ApplicationController
     @events = Event.all
   end
 
+
+  # TODO: Also, you'd need to check authorization header for auth_token you
+  # send in requests that matter
+  def send_auth_token_to_mobile_app_temp
+    # Save and verify and handle the incoming GoogleUserApiKey
+    respond_to do |format|
+      format.html{redirect_to fallback_redirect}
+      format.json{render json: {auth_token: "62442"}}
+  end
+
+  def register_GCM_token_temp
+    respond_to do |format|
+      format.html{redirect_to fallback_redirect}
+      format.json{render json: {success: true}}
+  end
+
   def new_event
     @event = Event.find_by_id(params[:id])
   end
