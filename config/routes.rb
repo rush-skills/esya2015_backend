@@ -18,7 +18,11 @@ Rails.application.routes.draw do
     post '/profile/update' => "participants#update"
     post '/register' => "registrations#create_form", as: :register_form
     get "/" => 'landings#mhome'
+  end
 
+  scope 'app' do
+    get '/register_user_token' => 'registrations#send_auth_token_to_mobile_app_temp'
+    post '/register_GCM_token' => 'registrations#register_GCM_token_temp'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
